@@ -1,2 +1,2 @@
 #!/bin/bash
-chmod 111 directory_name
+chmod 111
