@@ -1,5 +1,0 @@
-grep -wr "bin" /etc/passwd
-
-
-
-
