@@ -1,3 +1,1 @@
-Task 0. Where am i?
-1. What’s in there?
-Task 0. My name is Betty
+0x02. Shell, I/O Redirections and filters
