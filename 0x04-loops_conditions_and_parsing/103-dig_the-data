@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
-# This script is displaying "Holberton School" 10 times
-awk '{print $1, $9}' apache-access.log | sort | uniq -c | sort -rn
+# parse log for IP and HTTP
+# calculate and put num occurences up front; order from greatest to least
+
+awk '{print $1,$9}' apache-access.log | sort | uniq -c | sort -rn

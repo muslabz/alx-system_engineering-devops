@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# This script is displaying "Holberton School" 10 times
+# Prints "Best School" 10x, "bad luck" the 4th, "good luck" the 8th
 i="0"
 
 while [ $i -lt 10 ]
@@ -10,7 +10,8 @@ do
 	elif [ "$i" -eq "7" ]
 	then
 	echo "good luck"
-	else echo "Holberton School"
+	else 
+		echo "Best School"
         fi
 	i=$((i+1))
 done
