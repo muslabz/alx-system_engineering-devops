@@ -1,3 +1,4 @@
 #!/usr/bin/env ruby
-puts ARGV[0].scan(/^h.n$/).join
+#  Accepts one argument and pass it to a regular expression
+puts ARGV[0].scan(/h.n/).join
 
