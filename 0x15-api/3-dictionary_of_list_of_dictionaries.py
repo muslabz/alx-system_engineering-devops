@@ -1,22 +1,33 @@
 #!/usr/bin/python3
 """
-Python script that using a REST API, for a given employee ID,
+Using https://jsonplaceholder.typicode.com
+gathers data from API and exports it to JSON file
+Implemented using recursion
 """
+import json
+import requests
+
+
+API = "https://jsonplaceholder.typicode.com"
+"""REST API url"""
+
 
 if __name__ == '__main__':
-    import json
-    import requests
-    url = 'https://jsonplaceholder.typicode.com/'
-    us_id = requests.get(url + "users").json()
-
-    dict = {}
-    for user in us_id:
-        dict[user.get("id")] = [{
-            "username": user.get("username"),
-            "task": task.get("title"),
-            "completed": task.get("completed")}
-            for task in requests.get(url + "todos",
-                                     params={"userId": user.get("id")}).json()]
-
-    with open("todo_all_employees.json", "w", newline="") as json_f:
-        json.dump(dict, json_f)
+    users_res = requests.get('{}/users'.format(API)).json()
+    todos_res = requests.get('{}/todos'.format(API)).json()
+    users_data = {}
+    for user in users_res:
+        id = user.get('id')
+        user_name = user.get('username')
+        todos = list(filter(lambda x: x.get('userId') == id, todos_res))
+        user_data = list(map(
+            lambda x: {
+                'username': user_name,
+                'task': x.get('title'),
+                'completed': x.get('completed')
+            },
+            todos
+        ))
+        users_data['{}'.format(id)] = user_data
+    with open('todo_all_employees.json', 'w') as file:
+        json.dump(users_data, file)
